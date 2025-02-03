@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const buttonTodo = document.getElementById("button-todo");
   const ulTodo = document.getElementById("ul-todo");
   const btnCnfDelete = document.querySelector(".cnf-delete")
+  const btnDeleteAll = document.querySelector(".btn-delete-all")
 
   let editMode = false;
   let deleteElement = null;
@@ -14,6 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   buttonTodo.addEventListener("click", () => {
     const text = inputTodo.value;
+    if(!text){
+      return
+    }
     if (editMode) {
       editElement.querySelector(".text-todo").textContent = text;
       editMode = false;
@@ -39,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ulTodo.appendChild(li);
   };
 
-
+  
   ulTodo.addEventListener("click", (e) => {
     
     // if (e.target.classList.contains("btn-danger")) {
@@ -82,6 +86,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const allTodos = JSON.parse(localStorage.getItem("allTodos")) || [];
     allTodos.forEach((task) => createTodo(task));
   };
+
+  const deleteAllTodo =()=>{
+    localStorage.removeItem("allTodos")
+    ulTodo.replaceChildren()
+    loadAllTodo()
+  }
+  btnDeleteAll.addEventListener("click",deleteAllTodo)
 
   loadAllTodo();
 });
