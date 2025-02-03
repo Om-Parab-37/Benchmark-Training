@@ -2,9 +2,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputTodo = document.getElementById("input-todo");
   const buttonTodo = document.getElementById("button-todo");
   const ulTodo = document.getElementById("ul-todo");
+  const btnCnfDelete = document.querySelector(".cnf-delete")
 
   let editMode = false;
-  //let editElement = null;
+  let deleteElement = null;
+
+  btnCnfDelete.addEventListener("click",()=>{
+    deleteElement.remove();
+    saveAllTodo();
+  })
 
   buttonTodo.addEventListener("click", () => {
     const text = inputTodo.value;
@@ -28,16 +34,18 @@ document.addEventListener("DOMContentLoaded", () => {
     <input type="text" class="form-control d-none edit-todo" id="edit-todo" />
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
       <button type="button" class="btn btn-warning">edit</button>
-      <button type="button" class="btn btn-danger">delete</button>
+      <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deletemodal">delete</button>
     </div>`;
     ulTodo.appendChild(li);
   };
 
+
   ulTodo.addEventListener("click", (e) => {
-    if (e.target.classList.contains("btn-danger")) {
-      e.target.closest(".list-group-item").remove();
-      saveAllTodo();
-    }
+    
+    // if (e.target.classList.contains("btn-danger")) {
+    deleteElement = e.target.closest(".list-group-item")
+    //   saveAllTodo();
+    // }
 
     if (e.target.classList.contains("btn-warning")) {
       const li = e.target.closest(".list-group-item")
