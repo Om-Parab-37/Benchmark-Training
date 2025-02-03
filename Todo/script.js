@@ -26,19 +26,19 @@ document.addEventListener("DOMContentLoaded", () => {
       "list-group-item d-flex justify-content-between align-items-start";
     li.innerHTML = `<span class="text-todo">${task}</span>
     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-      <button type="button" class="btn btn-danger">Edit</button>
-      <button type="button" class="btn btn-warning">Delete</button>
+      <button type="button" class="btn btn-warning">Edit</button>
+      <button type="button" class="btn btn-danger">Delete</button>
     </div>`;
     ulTodo.appendChild(li);
   };
 
   ulTodo.addEventListener("click", (e) => {
-    if (e.target.classList.contains("btn-warning")) {
+    if (e.target.classList.contains("btn-danger")) {
       e.target.closest(".list-group-item").remove();
       saveAllTodo();
     }
 
-    if (e.target.classList.contains("btn-danger")) {
+    if (e.target.classList.contains("btn-warning")) {
       const li = e.target.closest(".list-group-item");
       const taskText = li.querySelector(".text-todo").textContent;
 
