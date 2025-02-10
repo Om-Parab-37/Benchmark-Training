@@ -1,5 +1,4 @@
 import {getCartById, getCartByUserId, getProductById, updateProductsInCart} from './fakeStoreApi.js'
-//import { jwtDecode } from "jwt-decode";
 const userId = (jwtDecode(localStorage.getItem("authToken"))).sub
 console.log("user ID :",userId)
 const cartListEl = document.getElementById("cart-items")
