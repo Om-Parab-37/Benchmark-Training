@@ -93,10 +93,10 @@ export const getCartById= async (id)=>{
     }
 }
 
-export const getCartsByUserId= async (userId)=>{
+export const getCartByUserId= async (userId)=>{
     try {
         const result = await fakeStore.get(`/carts/user/${userId}`)  
-        return result.data  
+        return result.data[0]  
     } catch (error) {
         console.log(error.message)
     }
@@ -206,7 +206,7 @@ export const deleteUserById = async (id)=>{
 
 export const loginUser = async (username,password)=>{
     try {
-        const result = await fakeStore.get(`/auth/login`,{username,password})  
+        const result = await fakeStore.post(`/auth/login`,{username,password})  
         return result.data  
     } catch (error) {
         console.log(error.message)

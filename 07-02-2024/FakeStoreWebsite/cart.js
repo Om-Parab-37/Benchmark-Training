@@ -1,4 +1,7 @@
-import {getCartById, getProductById, updateProductsInCart} from './fakeStoreApi.js'
+import {getCartById, getCartByUserId, getProductById, updateProductsInCart} from './fakeStoreApi.js'
+//import { jwtDecode } from "jwt-decode";
+const userId = (jwtDecode(localStorage.getItem("authToken"))).sub
+console.log("user ID :",userId)
 const cartListEl = document.getElementById("cart-items")
 const cartTotalEl = document.getElementById("cart-total")
 let cartProducts = []
@@ -33,7 +36,7 @@ const createCartProduct = async ({
     </div>
 
     <span class="badge bg-primary rounded-pill">₹${quantity*price}</span>
-    <button class="btn btn-danger btn-sm ms-2" onclick="${()=>console.log('clicked')}">Remove</button>
+    <button class="btn btn-danger btn-remove-product btn-sm ms-2" >Remove</button>
 </li>`
 TotalPrices.push(quantity*price)
 
@@ -50,11 +53,22 @@ const removeElementFromCart = async (id)=>{
     loadAllCartProducts(cartId)
 }
 
-const loadAllCartProducts = async (id)=>{
-    console.log(...(await getCartById(id)).products)
-    cartProducts = [...(await getCartById(id)).products]
-
+const loadAllCartProducts = async (userId)=>{
+    console.log(...(await getCartByUserId(userId)).products)
+    cartProducts = [...(await getCartByUserId(userId)).products]
+    cartListEl.replaceChildren()
     cartProducts.forEach(async (product) => await createCartProduct(product));
 }
 
-await loadAllCartProducts(cartId)
+const handleRemoveClick = e=>{
+    if(e.target.classList.contains("btn-remove-product")){
+        const deleteElement = e.target.closest(".list-group-item")
+        if(confirm("Do you want to really remove it from cart ...?")){
+            deleteElement.remove()
+        }
+    }
+}
+
+await loadAllCartProducts(userId)
+cartListEl.addEventListener("click",e=>handleRemoveClick(e))
+        
