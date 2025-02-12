@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light d-flex align-items-center vh-100">
+    <div class="container d-flex justify-content-center">
+        <div class="card shadow-lg p-4" style="max-width: 600px; width: 100%; border-radius: 15px;">
+            <div class="card-body text-center">
+                <h2 class="mb-4">Quiz</h2>
+                <div class="question-options">
+                <p class="h5 mb-3" id="question">Question</p>
+                <div  class="d-grid gap-2]">
+                    <div class="btn-group-vertical" id="options">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio0">Radio 0</label>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" >
+                        <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+
+  
+                      </div>
+                </div>
+            
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button class="btn btn-primary" id="previous-btn">👈Previous</button>
+                    <button class="btn btn-success" id="submit-btn">Submit Answer</button>
+                    <button class="btn btn-primary" id="next-btn">Next 👉</button>
+                </div>
+            </div>
+                <div class="results text-center mt-4 d-none">
+                    <div class="score fw-bold fs-4">Your score:<span id="score"></span></div>
+                    <p class="result-message fs-5 text-muted">Great job!</p>
+                    <button class="btn btn-primary" onclick="location.reload()">Restart Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="../scripts/Quiz.js"></script>
+    <script type="module" src="../scripts/script.js"></script>
+</body>
+</html>
