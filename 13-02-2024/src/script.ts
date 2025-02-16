@@ -11,17 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const myExpenseTools = new ExpenseTrackerUtils()
 
     const loadCategoriesToDropdown=() => {
-        Object
-            .values(Category)
-            .forEach(element => {
-                const option1El = document.createElement("option")
-                const option2El = document.createElement("option")
-                option1El.value = element
-                option2El.value = element
-                option1El.textContent = element
-                option2El.textContent = element
-                inpCategoryEl?.appendChild(option1El)
-                categoryFilterEl?.appendChild(option2El)
+        Object.values(Category).forEach(element => {
+            const option1El = document.createElement("option")
+            const option2El = document.createElement("option")
+            option1El.value = element
+            option2El.value = element
+            option1El.textContent = element
+            option2El.textContent = element
+            inpCategoryEl?.appendChild(option1El)
+            categoryFilterEl?.appendChild(option2El)
             });
     }
     // const optionEl = inpCategoryEl?.appendChild
