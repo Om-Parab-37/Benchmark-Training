@@ -1,19 +1,20 @@
+import { Task } from "../utils/TasksStorage"
 import TaskListItem from "./TaskListItem"
 
 type TProps = {
-    allTasks: string[]
+    allTasks: Task[]
+    handleTasks:()=>void
     
 }
 
-const TasksList = ({allTasks}:TProps) => {
-    console.log(allTasks)
+const TasksList = ({allTasks,handleTasks}:TProps) => {
   return (
     <>
     <h3>Tasks list</h3>
     <>
     {
-        allTasks.map((task:string)=>(
-            <TaskListItem task={task} />
+        allTasks.map((task:Task)=>(
+            <TaskListItem key={task.id} task={task} handleTasks={handleTasks}/>
         ))
     }
     </>

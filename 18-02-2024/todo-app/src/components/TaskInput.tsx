@@ -13,7 +13,7 @@ const TaskInput = ({handleTasks}:TTaskInputProps) => {
     <>
     <input type="text" value={task} onChange={(e)=>{ setTask(e.target.value)}} placeholder="Enter new Task"/>
     <button onClick={()=>{addTaskToLocalStorage(task); handleTasks()}}>Add Task</button>
-    </>
+    </> 
   )
 }
 export default TaskInput

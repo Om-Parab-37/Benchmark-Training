@@ -1,11 +1,11 @@
 import { useState } from "react";
 import TaskInput from "./components/TaskInput";
 import TasksList from "./components/TasksList";
-import { fetchTasksFromLocalStorage } from "./utils/TasksStorage";
+import { fetchTasksFromLocalStorage, Task } from "./utils/TasksStorage";
 
 export default function App () {
 
-  const [tasks,setTasks] = useState<string[]>(fetchTasksFromLocalStorage())
+  const [tasks,setTasks] = useState<Task[]>(fetchTasksFromLocalStorage())
 
   const handleTasks = ()=> {
     setTasks(fetchTasksFromLocalStorage())
@@ -15,7 +15,7 @@ export default function App () {
   return (
     <>
      <TaskInput handleTasks={handleTasks}/>
-     <TasksList allTasks={tasks} />
+     <TasksList allTasks={tasks} handleTasks={handleTasks} />
     </>
   );
 }
