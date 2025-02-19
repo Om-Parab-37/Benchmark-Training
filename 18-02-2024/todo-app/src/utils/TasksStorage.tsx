@@ -23,7 +23,7 @@ export const addTaskToLocalStorage=(task:string)=>{
 
 export const deleteTaskFromLocalStorage=(id:number)=>{
     const allTasks = [...fetchTasksFromLocalStorage()]
-    localStorage.setItem(tasksLocalStorageKey,JSON.stringify({tasks:allTasks.filter(task=>task.id!=id)}))
+    localStorage.setItem(tasksLocalStorageKey,JSON.stringify({tasks:allTasks.filter(task=>task.id!=id).map((task,idx)=>{return {id:idx,title:task.title}})}))
 
 }
 
