@@ -61,7 +61,7 @@ const PrdouctsList = () => {
 
   return (
     <>
-      <div className="grid grid-cols-12 gap-4 p-4">
+      <div className="flex justify-between items-center p-4 m-4">
         <div className="col-span-4">
           <AddNewProductForm />
         </div>
@@ -83,44 +83,44 @@ const PrdouctsList = () => {
           </Select>
         </div>
       </div>
-
-      {isProductsLoading ? (
-        <>
-          <div className="flex flex-col space-y-3">
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6p">
+        {isProductsLoading ? (
+          <>
+            <div className="flex flex-col space-y-3">
+              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col space-y-3 mt-2">
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
+            <div className="flex flex-col space-y-3 mt-2">
+              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
             </div>
-          </div>
-          <div className="flex flex-col space-y-3 mt-2">
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-            <div className="space-y-2">
-              <Skeleton className="h-4 w-[250px]" />
-              <Skeleton className="h-4 w-[200px]" />
+            <div className="flex flex-col space-y-3 mt-2">
+              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-[250px]" />
+                <Skeleton className="h-4 w-[200px]" />
+              </div>
             </div>
-          </div>
-        </>
-      ) : (
-        products?.map((product: IProduct) => (
-          <div
-            key={product.id}
-            onClick={() => {
-              setIsDialogOpen(true);
-              setSelectedProductId(product.id);
-            }}
-          >
-            <ProductsListItem product={product} />
-          </div>
-        ))
-      )}
+          </>
+        ) : (
+          products?.map((product: IProduct) => (
+            <ProductsListItem
+              onClick={() => {
+                setIsDialogOpen(true);
+                setSelectedProductId(product.id);
+              }}
+              key={product.id}
+              product={product}
+            />
+          ))
+        )}
+      </div>
       <ProductDetails
         isDialogOpen={isDialogOpen}
         setIsDialogOpen={setIsDialogOpen}
