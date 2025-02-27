@@ -10,16 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "../ui/button";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { deleteProductById, getProductById } from "@/api/ProductApi";
-import {
-  Edit,
-  Loader,
-  Loader2,
-  Loader2Icon,
-  LoaderCircle,
-  LoaderPinwheelIcon,
-  Trash2,
-  Trash2Icon,
-} from "lucide-react";
+import { Edit, Loader, Trash2, Trash2Icon } from "lucide-react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,11 +20,20 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "../ui/alert-dialog";
 import { useState } from "react";
 
-const ProductDetails = ({ isDialogOpen, setIsDialogOpen, productId }) => {
+type ProductDetailsPropsType = {
+  isDialogOpen: boolean;
+  setIsDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  productId: number;
+};
+
+const ProductDetails = ({
+  isDialogOpen,
+  setIsDialogOpen,
+  productId,
+}: ProductDetailsPropsType) => {
   const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = useState(false);
 
   const { data: product, isLoading: isProductLoading } = useQuery({
