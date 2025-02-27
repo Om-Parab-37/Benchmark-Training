@@ -118,7 +118,7 @@ const AddNewProductForm = () => {
                 className="col-span-3"
               />
             </div>
-            <div className="grid grid-cols-12 items-center gap-4">
+            <div className="grid grid-cols-12 items-center gap-4 ">
               <Label htmlFor="price" className=" col-span-2">
                 Price
               </Label>

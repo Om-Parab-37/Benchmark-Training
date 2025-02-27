@@ -9,11 +9,6 @@ type ProductsListItemPropsType = {
 
 const ProductsListItem = ({ product }: ProductsListItemPropsType) => {
   return (
-    // <>
-    //   <h1>Title: {product.title}</h1>
-    //   <h6>Description: {product.description}</h6>
-    //   <h3>Price: ₹{product.price}</h3>
-    // </>
     <>
       <div className="w-[300px] group relative space-y-4">
         <figure className="group-hover:opacity-90">

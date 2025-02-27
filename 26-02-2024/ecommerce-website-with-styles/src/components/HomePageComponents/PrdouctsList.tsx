@@ -16,9 +16,14 @@ import {
 } from "../ui/select";
 import { useState } from "react";
 import AddNewProductForm from "./AddNewProductForm";
+import ProductDetails from "./ProductDetails";
+import { Skeleton } from "../ui/skeleton";
 
 const PrdouctsList = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedProductId, setSelectedProductId] = useState(0);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   const fetchProducts = async () =>
     selectedCategory === "All"
       ? await getAllProducts()
@@ -26,7 +31,7 @@ const PrdouctsList = () => {
 
   const {
     data: products,
-    isLoading,
+    isLoading: isProductsLoading,
     error,
     isError,
   } = useQuery({
@@ -79,13 +84,48 @@ const PrdouctsList = () => {
         </div>
       </div>
 
-      {isLoading ? (
-        <h1>Loading...</h1>
+      {isProductsLoading ? (
+        <>
+          <div className="flex flex-col space-y-3">
+            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+          <div className="flex flex-col space-y-3 mt-2">
+            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+          <div className="flex flex-col space-y-3 mt-2">
+            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+        </>
       ) : (
         products?.map((product: IProduct) => (
-          <ProductsListItem key={product.id} product={product} />
+          <div
+            key={product.id}
+            onClick={() => {
+              setIsDialogOpen(true);
+              setSelectedProductId(product.id);
+            }}
+          >
+            <ProductsListItem product={product} />
+          </div>
         ))
       )}
+      <ProductDetails
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+        productId={selectedProductId}
+      />
     </>
   );
 };

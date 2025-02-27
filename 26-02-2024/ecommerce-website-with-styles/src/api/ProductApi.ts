@@ -27,3 +27,8 @@ export const addNewProduct = async (product: IProduct) => {
     return result.data;
 
 }
+export const deleteProductById = async (productId: number) => {
+    const result = await fakeStoreApi.delete(`/products/${productId}`);
+    return result.data;
+
+}
